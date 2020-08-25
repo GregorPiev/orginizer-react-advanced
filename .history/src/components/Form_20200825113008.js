@@ -11,14 +11,8 @@ export const Form = () => {
         event.preventDefault();
 
         if (value.trim()) {
-            firebase.addNote(value.trim())
-                .then(() => {
-                    alert.show('Comment has been created', 'success');
-                })
-                .catch((err) => {
-                    alert.show(`Comment has crashed reason: ${err}`, 'danger');
-                });
-
+            firebase.addNote(value.trim());
+            alert.show('Comment has been created', 'success');
             setValue('');
         } else {
             alert.show('Enter context');

@@ -16,7 +16,7 @@ export const Form = () => {
                     alert.show('Comment has been created', 'success');
                 })
                 .catch((err) => {
-                    alert.show(`Comment has crashed reason: ${err}`, 'danger');
+                    alert.show(`Comment has crashed reason: ${err}`, 'error');
                 });
 
             setValue('');

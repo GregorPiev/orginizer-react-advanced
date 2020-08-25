@@ -4,7 +4,6 @@ import { Form } from '../../components/Form';
 import { Notes } from '../../components/Notes';
 import './Home.scss';
 import { FirebaseContext } from '../../context/firebase/firebaseContext';
-import { Loader } from '../../components/Loader'
 
 export const Home = () => {
     const { loading, notes, fetchNotes } = useContext(FirebaseContext);

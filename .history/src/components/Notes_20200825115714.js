@@ -11,7 +11,7 @@ export const Notes = ({ notes }) => {
                     className="list-group-item note">
                     <div>
                         <strong>{note.title}</strong>
-                        <small>{new Date(note.date).toLocaleDateString('he-IL')} &nbsp; {new Date(note.date).toLocaleTimeString('he-IL')}</small>
+                        <small>{new Date(note.date).toLocaleDateString()} &nbsp; {new Date(note.date).toLocaleTimeString()}</small>
                     </div>
 
                     <button type="button" className="btn btn-outline-danger btn-sm">&times;</button>
