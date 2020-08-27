@@ -5,18 +5,11 @@ import { CSSTransition } from 'react-transition-group';
 export const Alert = () => {
     const { alert, hide } = useContext(AlertContext);
 
-    /* if (!alert.visible) {
+    if (!alert.visible) {
         return null;
-    } */
+    }
     return (
-        <CSSTransition
-            unmountOnExit
-            mountOnEnter
-            in={alert.visible}
-            timeout={{ enter: 750, exit: 1050 }}
-            classNames='comment'
-            appear
-        >
+        <CSSTransition>
             <div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
                 <strong>Alert!</strong>&nbsp;
             {alert.text}

@@ -1,13 +1,14 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import axios from 'axios';
 import { FirebaseContext } from './firebaseContext'
 import { firebaseReducer } from './firebaseReducer';
+import { AlertContext } from '../alert/alertContext';
 import { SHOW_LOADER, ADD_NOTE, FETCH_NOTES, REMOVE_NOTE } from '../type';
 
-
+const { alert } = useContext(AlertContext);
 
 const url = 'https://organiser-react-advansed.firebaseio.com';//process.env.REACT_APP_DB_URL;
-
+console.log('%cFirebaseState URL:' + url, 'color: red');
 export const FirebaseState = ({ children }) => {
     const initialState = {
         notes: [],
@@ -18,7 +19,9 @@ export const FirebaseState = ({ children }) => {
     const showLoader = () => dispatch({ type: SHOW_LOADER });
     const fetchNotes = async () => {
         showLoader();
+
         const res = await axios.get(`${url}/notes.json`);
+        console.log('fetchNotes:', res.data);
         const payload = Object.keys(res.data).map(key => {
             return {
                 ...res.data[key],
@@ -55,11 +58,25 @@ export const FirebaseState = ({ children }) => {
 
 
     const removeNote = async (id) => {
-        await axios.delete(`${url}/notes/${id}.json`);
-        dispatch({
-            type: REMOVE_NOTE,
-            payload: id
-        })
+        try {
+            await axios.delete(`${url}/notes/${id}.json`)
+                .then(res => {
+                    console.log('Result note delete:', res);
+                    alert.show('Note was deleted', 'success')
+                })
+                .error(err => {
+                    console.log('Error delete:', err);
+                    alert.show(`Error delete:${err}`, 'error')
+                })
+
+            dispatch({
+                type: REMOVE_NOTE,
+                payload: id
+            })
+        } catch (error) {
+            alert.show(`Error remove:${error.message}`, 'error')
+        }
+
     }
 
     return (

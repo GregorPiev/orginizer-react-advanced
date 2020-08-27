@@ -16,9 +16,11 @@ export const Home = () => {
     }, []);
 
     function removeItemNote(id) {
+        console.log('Note should delete:', id);
         try {
             removeNote(id)
                 .then(res => {
+                    console.log('Result delete Note:', res);
                     alert.show('Comment has been deleted', 'success');
                 },
                     error => {

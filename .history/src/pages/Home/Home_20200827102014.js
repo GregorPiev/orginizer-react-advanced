@@ -16,13 +16,15 @@ export const Home = () => {
     }, []);
 
     function removeItemNote(id) {
+        console.log('Note should delete:', id);
         try {
             removeNote(id)
                 .then(res => {
-                    alert.show('Comment has been deleted', 'success');
+                    console.log('Result delete Note:', res);
+                    alert.show('Note was deleted', 'success');
                 },
                     error => {
-                        alert.show(`Error within deleting comment: ${error.message}`, 'success');
+                        alert.show(`Error within deleting note: ${error.message}`, 'success');
                     }
                 )
         } catch (error) {

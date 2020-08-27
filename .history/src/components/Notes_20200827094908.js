@@ -1,16 +1,14 @@
 import React from 'react';
 import './ComponentsStyle.scss';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-export const Notes = ({ notes, onRemove }) => (
-    <TransitionGroup component="ul" className="list-group">
-        {notes.map(note => (
-            <CSSTransition
-                key={note.id}
-                classNames={'note'}
-                timeout={1000}
-            >
-                <li className="list-group-item note">
+export const Notes = ({ notes, onRemove }) => {
+
+    return (
+        <ul className="list-group">
+            {notes.map(note => (
+                <li
+                    key={note.id}
+                    className="list-group-item note">
                     <div>
                         <strong>{note.title}</strong>
                         <small>{new Date(note.date).toLocaleDateString('he-IL')} &nbsp; {new Date(note.date).toLocaleTimeString('he-IL')}</small>
@@ -24,8 +22,7 @@ export const Notes = ({ notes, onRemove }) => (
                         &times;
                         </button>
                 </li>
-            </CSSTransition>
-        ))}
-    </TransitionGroup>
-
-)
+            ))}
+        </ul>
+    )
+}

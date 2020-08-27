@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AlertContext } from '../context/alert/alertContext';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 
 export const Alert = () => {
     const { alert, hide } = useContext(AlertContext);
@@ -9,13 +9,12 @@ export const Alert = () => {
         return null;
     } */
     return (
-        <CSSTransition
-            unmountOnExit
-            mountOnEnter
+        <Transition
             in={alert.visible}
-            timeout={{ enter: 750, exit: 1050 }}
-            classNames='comment'
-            appear
+            timeout={750}
+            classNames="cmt"
+            mountOnEnter
+            unmountOnExit
         >
             <div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
                 <strong>Alert!</strong>&nbsp;
@@ -24,6 +23,6 @@ export const Alert = () => {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        </CSSTransition>
+        </Transition>
     )
 }

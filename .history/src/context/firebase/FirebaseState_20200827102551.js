@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import axios from 'axios';
 import { FirebaseContext } from './firebaseContext'
 import { firebaseReducer } from './firebaseReducer';
@@ -7,7 +7,7 @@ import { SHOW_LOADER, ADD_NOTE, FETCH_NOTES, REMOVE_NOTE } from '../type';
 
 
 const url = 'https://organiser-react-advansed.firebaseio.com';//process.env.REACT_APP_DB_URL;
-
+console.log('%cFirebaseState URL:' + url, 'color: red');
 export const FirebaseState = ({ children }) => {
     const initialState = {
         notes: [],
@@ -18,7 +18,9 @@ export const FirebaseState = ({ children }) => {
     const showLoader = () => dispatch({ type: SHOW_LOADER });
     const fetchNotes = async () => {
         showLoader();
+
         const res = await axios.get(`${url}/notes.json`);
+        console.log('fetchNotes:', res.data);
         const payload = Object.keys(res.data).map(key => {
             return {
                 ...res.data[key],

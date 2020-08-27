@@ -19,7 +19,7 @@
 }
 
 .note-enter-active {
-	animation: note 1s ease-in alternate-reverse;
+	animation: note 1ms ease-in alternate-reverse;
 }
 .note-exit-active {
 	animation: note 1s ease-out forwards;

@@ -10,14 +10,13 @@ export const Alert = () => {
     } */
     return (
         <CSSTransition
-            unmountOnExit
-            mountOnEnter
             in={alert.visible}
-            timeout={{ enter: 750, exit: 1050 }}
-            classNames='comment'
-            appear
+            timeout={750}
+            ref={this.refs.Alert}
+            mountOnEnter
+            unmountOnExit
         >
-            <div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
+            <div ref='Alert' className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
                 <strong>Alert!</strong>&nbsp;
             {alert.text}
                 <button onClick={hide} type="button" className="close" aria-label="Close">

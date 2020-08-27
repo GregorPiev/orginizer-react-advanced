@@ -17,12 +17,8 @@
 	transition: opacity 1050ms ease-out;
 	opacity: 0;
 }
-
-.note-enter-active {
-	animation: note 1s ease-in alternate-reverse;
-}
 .note-exit-active {
-	animation: note 1s ease-out forwards;
+	animation: note 1s ease-out;
 }
 
 @keyframes note {

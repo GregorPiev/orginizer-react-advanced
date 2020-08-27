@@ -13,7 +13,7 @@ export const Alert = () => {
             unmountOnExit
             mountOnEnter
             in={alert.visible}
-            timeout={{ enter: 750, exit: 1050 }}
+            timeout={{ enter: 750, exit: 350 }}
             classNames='comment'
             appear
         >

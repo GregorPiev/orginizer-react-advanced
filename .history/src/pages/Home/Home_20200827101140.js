@@ -9,26 +9,11 @@ import { Loader } from '../../components/Loader'
 
 export const Home = () => {
     const { loading, notes, fetchNotes, removeNote } = useContext(FirebaseContext);
-    const alert = useContext(AlertContext);
+    const { alert } = useContext(AlertContext);
 
     useEffect(() => {
         fetchNotes()
-    }, []);
-
-    function removeItemNote(id) {
-        try {
-            removeNote(id)
-                .then(res => {
-                    alert.show('Comment has been deleted', 'success');
-                },
-                    error => {
-                        alert.show(`Error within deleting comment: ${error.message}`, 'success');
-                    }
-                )
-        } catch (error) {
-
-        }
-    }
+    }, [])
 
     return (
         <Fragment >
@@ -38,7 +23,7 @@ export const Home = () => {
             {
                 loading
                     ? <Loader />
-                    : <Notes notes={notes} onRemove={(id) => removeItemNote(id)} />
+                    : <Notes notes={notes} onRemove={removeNote} />
             }
 
         </Fragment>

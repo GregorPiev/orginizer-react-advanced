@@ -1,0 +1,19 @@
+.note {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	strong {
+		margin-right: 1rem;
+	}
+}
+.comment-enter {
+	opacity: 0;
+}
+.comment-enter-active {
+	transition: opacity 750ms ease-out;
+	opacity: 1;
+}
+.comment-exit-active {
+	transition: opacity 1050ms ease-out;
+	opacity: 0;
+}
